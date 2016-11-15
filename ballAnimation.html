@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Canvas Sample</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="stLine.html">Straight Line</a>
+                </li>
+                <li>
+                    <a href="colorRect.html">Red Coloured Triangle</a>
+                </li>
+                <li>
+                    <a href="shadeCircle.html">Shadowed Circle</a>
+                </li>
+                <li>
+                    <a href="circleGradShade.html">Circle with Gradient and Shadows</a>
+                </li>
+                <li>
+                    <a href="transTriangleCircle.html">Transparent Triangle inside a Circle</a>
+                </li>
+                <li>
+                    <a href="smiley.html">Smiley Face</a>
+                </li>
+                <li>
+                    <a href="ballAnimation.html">Animated Ball</a>
+                </li>
+                <li>
+                    <a href="bouncingBall.html">Bouncing Ball</a>
+                </li>
+                <li>
+                    <a href="movingCar.html">Moving Car</a>
+                </li>
+                <li>
+                    <a href="revolvingCircle.html">Revolving Circle</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <canvas id="canvas" style="border: 1px solid" width="600" height="300"></canvas>
+                        <p style="color:red">Hover on the board to see ball moving.</p>
+                        <code class="col-lg-12">
+                            var canvas = document.getElementById('canvas');<br>
+                            var ctx = canvas.getContext('2d');<br>
+                            var raf;<br><br>
+
+                            var ball = {
+                              x: 100,
+                              y: 100,
+                              vx: 5,
+                              vy: 2,
+                              radius: 25,
+                              color: 'blue',<br>
+                              draw: function() {<br>
+                                ctx.beginPath();<br>
+                                ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);<br>
+                                ctx.closePath();<br>
+                                ctx.fillStyle = this.color;<br>
+                                ctx.fill();<br>
+                              }<br>
+                            };<br><br>
+
+                            function draw() {<br>
+                              ctx.clearRect(0,0, canvas.width, canvas.height);<br>
+                              ball.draw();<br>
+                              ball.x += ball.vx;<br>
+                              ball.y += ball.vy;<br><br>
+
+                              if (ball.y + ball.vy > canvas.height ||<br>
+                                  ball.y + ball.vy < 0) {<br>
+                                ball.vy = -ball.vy;<br>
+                              }<br>
+                              if (ball.x + ball.vx > canvas.width ||<br>
+                                  ball.x + ball.vx < 0) {<br>
+                                ball.vx = -ball.vx;<br>
+                              }<br><br>
+
+                              raf = window.requestAnimationFrame(draw);<br>
+                            }<br><br>
+
+                            canvas.addEventListener('mouseover', function(e) {<br>
+                              raf = window.requestAnimationFrame(draw);<br><br>
+                            });<br><br>
+
+                            canvas.addEventListener("mouseout", function(e) {<br>
+                              window.cancelAnimationFrame(raf);<br>
+                            });<br><br>
+
+                            ball.draw();
+                        </code>
+    <script>
+      var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var raf;
+
+        var ball = {
+          x: 100,
+          y: 100,
+          vx: 5,
+          vy: 2,
+          radius: 25,
+          color: 'blue',
+          draw: function() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+            ctx.closePath();
+            ctx.fillStyle = this.color;
+            ctx.fill();
+          }
+        };
+
+        function draw() {
+          ctx.clearRect(0,0, canvas.width, canvas.height);
+          ball.draw();
+          ball.x += ball.vx;
+          ball.y += ball.vy;
+
+          if (ball.y + ball.vy > canvas.height ||
+              ball.y + ball.vy < 0) {
+            ball.vy = -ball.vy;
+          }
+          if (ball.x + ball.vx > canvas.width ||
+              ball.x + ball.vx < 0) {
+            ball.vx = -ball.vx;
+          }
+
+          raf = window.requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener('mouseover', function(e) {
+          raf = window.requestAnimationFrame(draw);
+        });
+
+        canvas.addEventListener("mouseout", function(e) {
+          window.cancelAnimationFrame(raf);
+        });
+
+        ball.draw();
+    </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
+

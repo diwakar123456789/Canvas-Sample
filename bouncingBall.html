@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Canvas Sample</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="stLine.html">Straight Line</a>
+                </li>
+                <li>
+                    <a href="colorRect.html">Red Coloured Triangle</a>
+                </li>
+                <li>
+                    <a href="shadeCircle.html">Shadowed Circle</a>
+                </li>
+                <li>
+                    <a href="circleGradShade.html">Circle with Gradient and Shadows</a>
+                </li>
+                <li>
+                    <a href="transTriangleCircle.html">Transparent Triangle inside a Circle</a>
+                </li>
+                <li>
+                    <a href="smiley.html">Smiley Face</a>
+                </li>
+                <li>
+                    <a href="ballAnimation.html">Animated Ball</a>
+                </li>
+                <li>
+                    <a href="bouncingBall.html">Bouncing Ball</a>
+                </li>
+                <li>
+                    <a href="movingCar.html">Moving Car</a>
+                </li>
+                <li>
+                    <a href="revolvingCircle.html">Revolving Circle</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <canvas id="myCanvas" width="600px" height="300px"></canvas>
+                        <code class="col-lg-12">
+                            var canvas = document.getElementById("myCanvas");<br>
+                            var c = canvas.getContext("2d");<br><br>
+
+                            //create te container that will hold the boincing balls.<br>
+                            var container = {
+                              x: 0,
+                              y: 0,
+                              width: 600,
+                              height: 300
+                            };<br><br>
+                            //create the array of circles that will be animated<br>
+                            var circles = [{
+                              x: 50,
+                              y: 100,
+                              r: 10,
+                              vx: 10,
+                              vy: 9,
+                              color: 125
+                            }, <br>{
+                              x: 150,
+                              y: 80,
+                              r: 20,
+                              vx: 15,
+                              vy: 8,
+                              color: 205
+                            }, <br>{
+                              x: 90,
+                              y: 150,
+                              r: 5,
+                              vx: 5,
+                              vy: 15,
+                              color: 25
+                            },<br> {
+                              x: 100,
+                              y: 50,
+                              r: 15,
+                              vx: 8,
+                              vy: 10,
+                              color: 100
+                            }];<br><br>
+
+                            function animate() {<br>
+                              //draw the container<br>
+                              c.fillStyle = "#000000";<br>
+                              c.fillRect(container.x, container.y, container.width, container.height);<br><br>
+
+                              //loop throughj the circles array<br>
+                              for (var i = 0; i < circles.length; i++) {<br>
+                                //draw the circles<br>
+                                c.fillStyle = 'hsl(' + circles[i].color++ + ', 100%, 50%)';<br>
+                                c.beginPath();<br>
+                                c.arc(circles[i].x, circles[i].y, circles[i].r, 0, Math.PI * 2, true);<br>
+                                c.fill()<br><br>
+
+                                //time to animate our circles ladies and gentlemen.<br>
+                                if (circles[i].x - circles[i].r + circles[i].vx < container.x || circles[i].x + circles[i].r + circles[i].vx > container.x + container.width) {<br>
+                                  circles[i].vx = -circles[i].vx;<br>
+                                }<br><br>
+
+                                if (circles[i].y + circles[i].r + circles[i].vy > container.y + container.height || circles[i].y - circles[i].r + circles[i].vy < container.y) {<br>
+                                  circles[i].vy = -circles[i].vy;<br>
+                                }<br><br>
+
+                                circles[i].x += circles[i].vx<br>
+                                circles[i].y += circles[i].vy<br><br>
+                              }
+
+                              requestAnimationFrame(animate);<br><br>
+                            }
+                            requestAnimationFrame(animate);
+                        </code>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var c = canvas.getContext("2d");
+
+        //create te container that will hold the boincing balls.
+        var container = {
+          x: 0,
+          y: 0,
+          width: 600,
+          height: 300
+        };
+        //create the array of circles that will be animated
+        var circles = [{
+          x: 50,
+          y: 100,
+          r: 10,
+          vx: 10,
+          vy: 9,
+          color: 125
+        }, {
+          x: 150,
+          y: 80,
+          r: 20,
+          vx: 15,
+          vy: 8,
+          color: 205
+        }, {
+          x: 90,
+          y: 150,
+          r: 5,
+          vx: 5,
+          vy: 15,
+          color: 25
+        }, {
+          x: 100,
+          y: 50,
+          r: 15,
+          vx: 8,
+          vy: 10,
+          color: 100
+        }];
+
+        function animate() {
+          //draw the container
+          c.fillStyle = "#000000";
+          c.fillRect(container.x, container.y, container.width, container.height);
+
+          //loop throughj the circles array
+          for (var i = 0; i < circles.length; i++) {
+            //draw the circles
+            c.fillStyle = 'hsl(' + circles[i].color++ + ', 100%, 50%)';
+            c.beginPath();
+            c.arc(circles[i].x, circles[i].y, circles[i].r, 0, Math.PI * 2, true);
+            c.fill()
+
+            //time to animate our circles ladies and gentlemen.
+            if (circles[i].x - circles[i].r + circles[i].vx < container.x || circles[i].x + circles[i].r + circles[i].vx > container.x + container.width) {
+              circles[i].vx = -circles[i].vx;
+            }
+
+            if (circles[i].y + circles[i].r + circles[i].vy > container.y + container.height || circles[i].y - circles[i].r + circles[i].vy < container.y) {
+              circles[i].vy = -circles[i].vy;
+            }
+
+            circles[i].x += circles[i].vx
+            circles[i].y += circles[i].vy
+          }
+
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

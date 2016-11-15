@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Canvas Sample</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="stLine.html">Straight Line</a>
+                </li>
+                <li>
+                    <a href="colorRect.html">Red Coloured Triangle</a>
+                </li>
+                <li>
+                    <a href="shadeCircle.html">Shadowed Circle</a>
+                </li>
+                <li>
+                    <a href="circleGradShade.html">Circle with Gradient and Shadows</a>
+                </li>
+                <li>
+                    <a href="transTriangleCircle.html">Transparent Triangle inside a Circle</a>
+                </li>
+                <li>
+                    <a href="smiley.html">Smiley Face</a>
+                </li>
+                <li>
+                    <a href="ballAnimation.html">Animated Ball</a>
+                </li>
+                <li>
+                    <a href="bouncingBall.html">Bouncing Ball</a>
+                </li>
+                <li>
+                    <a href="movingCar.html">Moving Car</a>
+                </li>
+                <li>
+                    <a href="revolvingCircle.html">Revolving Circle</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <canvas id="myCanvas" width="578" height="200"></canvas>
+                        <code class="col-lg-12">
+                            var canvas = document.getElementById('myCanvas');<br>
+                            var context = canvas.getContext('2d');<br><br>
+
+                            context.beginPath();<br>
+                            context.moveTo(50, 150);<br>
+                            context.lineTo(450, 150);<br>
+                            context.stroke();
+                        </code>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      context.beginPath();
+      context.moveTo(50, 150);
+      context.lineTo(450, 150);
+      context.stroke();
+    </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Canvas Sample</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="stLine.html">Straight Line</a>
+                </li>
+                <li>
+                    <a href="colorRect.html">Red Coloured Triangle</a>
+                </li>
+                <li>
+                    <a href="shadeCircle.html">Shadowed Circle</a>
+                </li>
+                <li>
+                    <a href="circleGradShade.html">Circle with Gradient and Shadows</a>
+                </li>
+                <li>
+                    <a href="transTriangleCircle.html">Transparent Triangle inside a Circle</a>
+                </li>
+                <li>
+                    <a href="smiley.html">Smiley Face</a>
+                </li>
+                <li>
+                    <a href="ballAnimation.html">Animated Ball</a>
+                </li>
+                <li>
+                    <a href="bouncingBall.html">Bouncing Ball</a>
+                </li>
+                <li>
+                    <a href="movingCar.html">Moving Car</a>
+                </li>
+                <li>
+                    <a href="revolvingCircle.html">Revolving Circle</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <canvas id="myCanvas" width="800" height="200" style="border:1px solid"></canvas>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p style="color: red">Reload to see the car moving again.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <button onclick="myFunction()">Reload</button>
+                            </div>
+                        </div>                    
+
+                        <code class="col-lg-12">
+                            window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.oRequestAnimationFrame;<br><br>
+
+                            // get canvas and create drawing context<br>
+                            var canvas = document.getElementById('myCanvas');<br>
+                            var context = canvas.getContext('2d');<br><br>
+
+                            // create image<br>
+                            var img = document.createElement("img");<br><br>
+
+                            // fill image from data string<br><br>
+
+                            // or fill image from url<br>
+                            img.src = "images/car.png"<br><br>
+
+                            var xSpeed = 0.1;  //px per ms<br>
+                            var ySpeed = 0.0;<br><br>
+
+                            function animate(nowTime, lastTime, xPos, yPos) {<br>
+                                if ((img.style.width + xPos) > canvas.width) {<br>
+                                    xPos = -140;
+                                    yPos = 200;
+                                }<br><br>
+
+                                var timeDelta = nowTime - lastTime;<br>
+                                var xDelta = xSpeed * timeDelta;<br>
+                                var yDelta = ySpeed * timeDelta;<br><br>
+
+                                // clear<br>
+                                context.clearRect(0, 0, canvas.width, canvas.height);<br><br>
+
+                                //draw img<br>
+                                context.drawImage(img, xPos, yPos);<br><br>
+
+                                requestAnimationFrame(<br>
+                                    function(timestamp){animate(timestamp, nowTime, xPos + xDelta, yPos + yDelta)}<br>
+                                );<br>
+                            }<br><br>
+
+                            animate(0, 0,  -150, 140);
+                        </code>
+    <script>
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.oRequestAnimationFrame;
+
+        // get canvas and create drawing context
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        // create image
+        var img = document.createElement("img");
+
+        // fill image from data string
+
+        // or fill image from url
+        img.src = "images/car.png"
+
+        var xSpeed = 0.1;  //px per ms
+        var ySpeed = 0.0;
+
+        function animate(nowTime, lastTime, xPos, yPos) {
+            if ((img.style.width + xPos) > canvas.width) {
+                xPos = -140;
+                yPos = 200;
+            }
+
+            var timeDelta = nowTime - lastTime;
+            var xDelta = xSpeed * timeDelta;
+            var yDelta = ySpeed * timeDelta;
+
+            // clear
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //draw img
+            context.drawImage(img, xPos, yPos);
+
+            requestAnimationFrame(
+                function(timestamp){animate(timestamp, nowTime, xPos + xDelta, yPos + yDelta)}
+            );
+        }
+
+        animate(0, 0,  -150, 140);
+            </script>
+            <script>
+                function myFunction() {
+                    location.reload();
+                }
+    </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

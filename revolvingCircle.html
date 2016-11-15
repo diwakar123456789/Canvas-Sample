@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Canvas Sample</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="stLine.html">Straight Line</a>
+                </li>
+                <li>
+                    <a href="colorRect.html">Red Coloured Triangle</a>
+                </li>
+                <li>
+                    <a href="shadeCircle.html">Shadowed Circle</a>
+                </li>
+                <li>
+                    <a href="circleGradShade.html">Circle with Gradient and Shadows</a>
+                </li>
+                <li>
+                    <a href="transTriangleCircle.html">Transparent Triangle inside a Circle</a>
+                </li>
+                <li>
+                    <a href="smiley.html">Smiley Face</a>
+                </li>
+                <li>
+                    <a href="ballAnimation.html">Animated Ball</a>
+                </li>
+                <li>
+                    <a href="bouncingBall.html">Bouncing Ball</a>
+                </li>
+                <li>
+                    <a href="movingCar.html">Moving Car</a>
+                </li>
+                <li>
+                    <a href="revolvingCircle.html">Revolving Circle</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <canvas id="canvas" width="300" height="300"></canvas>
+                        <code class="col-lg-12">
+                            var sun = new Image();<br>
+                            var moon = new Image();<br>
+                            var earth = new Image();<br>
+                            function init(){<br>
+                              sun.src = 'images/Canvas_sun.png';<br>
+                              moon.src = 'images/Canvas_moon.png';<br>
+                              earth.src = 'images/Canvas_earth.png';<br>
+                              window.requestAnimationFrame(draw);<br>
+                            }<br><br>
+
+                            function draw() {<br>
+                              var ctx = document.getElementById('canvas').getContext('2d');<br><br>
+
+                              ctx.globalCompositeOperation = 'destination-over';<br>
+                              ctx.clearRect(0,0,300,300); // clear canvas<br><br>
+
+                              ctx.fillStyle = 'rgba(0,0,0,0.4)';<br>
+                              ctx.strokeStyle = 'rgba(0,153,255,0.4)';<br>
+                              ctx.save();<br>
+                              ctx.translate(150,150);<br><br>
+
+                              // Earth<br>
+                              var time = new Date();<br>
+                              ctx.rotate( ((2*Math.PI)/60)*time.getSeconds() + ((2*Math.PI)/60000)*time.getMilliseconds() );<br>
+                              ctx.translate(105,0);<br>
+                              ctx.fillRect(0,-12,50,24); // Shadow<br>
+                              ctx.drawImage(earth,-12,-12);<br><br>
+
+                              // Moon<br>
+                              ctx.save();<br>
+                              ctx.rotate( ((2*Math.PI)/6)*time.getSeconds() + ((2*Math.PI)/6000)*time.getMilliseconds() );<br>
+                              ctx.translate(0,28.5);<br>
+                              ctx.drawImage(moon,-3.5,-3.5);<br>
+                              ctx.restore();<br><br>
+
+                              ctx.restore();<br><br>
+
+                              ctx.beginPath();<br>
+                              ctx.arc(150,150,105,0,Math.PI*2,false); // Earth orbit<br>
+                              ctx.stroke();<br><br>
+
+                              ctx.drawImage(sun,0,0,300,300);<br>
+
+                              window.requestAnimationFrame(draw);<br>
+                            }<br><br>
+
+                            init();
+                        </code>
+    <script>
+        var sun = new Image();
+        var moon = new Image();
+        var earth = new Image();
+        function init(){
+          sun.src = 'images/Canvas_sun.png';
+          moon.src = 'images/Canvas_moon.png';
+          earth.src = 'images/Canvas_earth.png';
+          window.requestAnimationFrame(draw);
+        }
+
+        function draw() {
+          var ctx = document.getElementById('canvas').getContext('2d');
+
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.clearRect(0,0,300,300); // clear canvas
+
+          ctx.fillStyle = 'rgba(0,0,0,0.4)';
+          ctx.strokeStyle = 'rgba(0,153,255,0.4)';
+          ctx.save();
+          ctx.translate(150,150);
+
+          // Earth
+          var time = new Date();
+          ctx.rotate( ((2*Math.PI)/60)*time.getSeconds() + ((2*Math.PI)/60000)*time.getMilliseconds() );
+          ctx.translate(105,0);
+          ctx.fillRect(0,-12,50,24); // Shadow
+          ctx.drawImage(earth,-12,-12);
+
+          // Moon
+          ctx.save();
+          ctx.rotate( ((2*Math.PI)/6)*time.getSeconds() + ((2*Math.PI)/6000)*time.getMilliseconds() );
+          ctx.translate(0,28.5);
+          ctx.drawImage(moon,-3.5,-3.5);
+          ctx.restore();
+
+          ctx.restore();
+
+          ctx.beginPath();
+          ctx.arc(150,150,105,0,Math.PI*2,false); // Earth orbit
+          ctx.stroke();
+
+          ctx.drawImage(sun,0,0,300,300);
+
+          window.requestAnimationFrame(draw);
+        }
+
+        init();
+    </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
